@@ -1,6 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App';
 
+const setInputs = (teams: any[]) => {
+    const homeInput = screen.getByLabelText('Home Team');
+    const awayInput = screen.getByLabelText('Away Team');
+
+    fireEvent.change(homeInput, { target: { value: teams[0] } });
+    fireEvent.change(awayInput, { target: { value: teams[1] } });
+};
+
 describe('App Cases', () => {
     test('Renders just fine', () => {
         expect(() => <App />).not.toThrowError();
@@ -14,14 +22,24 @@ describe('App Cases', () => {
 
     test('Receive and display matches', async () => {
         render(<App />);
-        const homeInput = screen.getByLabelText('Home Team');
-        const awayInput = screen.getByLabelText('Away Team');
 
-        fireEvent.change(homeInput, { target: { value: 'team 01' } });
-        fireEvent.change(awayInput, { target: { value: 'team 02' } });
+        setInputs(['team 01', 'team 02']);
         fireEvent.click(screen.getByText(/submit/i));
 
         expect(await screen.findByText(/team 01 0/)).toBeInTheDocument();
         expect(await screen.findByText(/team 02 0/)).toBeInTheDocument();
     });
+
+    const invalidMatches = [['Team 01'], ['Team 01', 1], [0, 1], [], ['Team 01', 'Team 01']];
+    test.each(invalidMatches)(
+        'Catch and display returned error for data: $teams',
+        async (...teams: any[]) => {
+            render(<App />);
+
+            setInputs(teams);
+            fireEvent.click(screen.getByText(/submit/i));
+
+            expect(await screen.findByRole('alert')).toBeInTheDocument();
+        },
+    );
 });
