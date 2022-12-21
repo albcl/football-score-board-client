@@ -1,27 +1,30 @@
-import { render, screen } from '@testing-library/react';
-import { Board } from 'football-score-board';
-import { useContext } from 'react';
-import FormProvider, { FormContext } from '../../context';
+import { fireEvent, render, screen } from '@testing-library/react';
+import WithBoard from '../../HOC/WithBoard';
+import AddMatchForm from '../AddMatchForm';
 
 describe('AddMatchForm Cases', () => {
     test('Render just fine', () => {
-        render(<AddMatchForm />);
+        const TestingComponentWithProvider = WithBoard(AddMatchForm);
+        render(<TestingComponentWithProvider />);
 
         expect(screen.getByLabelText(/Home Team/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/Away Team/i)).toBeInTheDocument();
-        expect(screen.getByLabelText(/submit/i)).toBeInTheDocument();
+        expect(screen.getByText(/submit/i)).toBeInTheDocument();
     });
 
-    test('Can read/write in Context', () => {
-        const TestingComponent = () => {
-            const { newMatch } = useContext(FormContext);
-            return null;
-        };
+    test("Fails: Can't access Context", () => {
+        render(<AddMatchForm />);
 
-        expect(() => (
-            <FormProvider board={new Board()}>
-                <TestingComponent />
-            </FormProvider>
-        )).not.toThrowError();
+        const test = screen.getByText(/submit/i);
+        expect(test).toBeInTheDocument();
+
+        // mock console
+        const consoleError = jest.spyOn(global.console, 'error').mockImplementation(() => {});
+
+        fireEvent.click(test);
+        expect(consoleError).toHaveBeenCalledTimes(1);
+
+        // restore console
+        consoleError.mockRestore();
     });
 });
