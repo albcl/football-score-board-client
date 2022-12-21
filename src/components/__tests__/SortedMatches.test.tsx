@@ -1,12 +1,18 @@
 import { render, screen } from '@testing-library/react';
-import WithBoard from '../../HOC/WithBoard';
-
-const SortedMatches = () => <h2>Live Sorted Matches</h2>;
-const ComponentWithContext = WithBoard(SortedMatches);
+import SortedMatches from '../SortedMatches';
 
 describe('SortedMatches Cases', () => {
     test('Render just fine', () => {
-        render(<ComponentWithContext />);
+        const summary = ['string 01', 'string 02'];
+        render(<SortedMatches data={summary} />);
+
+        expect(screen.getByText('Live Sorted Matches')).toBeTruthy();
+        summary.forEach(line => {
+            expect(screen.getByText(line)).toBeTruthy();
+        });
+    });
+    test('Render just fine with empty array', () => {
+        render(<SortedMatches data={[]} />);
 
         expect(screen.getByText('Live Sorted Matches')).toBeTruthy();
     });

@@ -2,6 +2,7 @@ import './App.css';
 import { useContext } from 'react';
 import { FormContext } from './context';
 import WithBoard from './HOC/WithBoard';
+import SortedMatches from './components/SortedMatches';
 
 function App() {
     const { newMatch, error, liveScores, handleFormChange, handleSubmit } = useContext(FormContext);
@@ -34,9 +35,7 @@ function App() {
                     {error}
                 </p>
             )}
-            {liveScores.map((match, ix) => (
-                <p key={ix}>{match}</p>
-            ))}
+            <SortedMatches data={liveScores} />
         </div>
     );
 }
