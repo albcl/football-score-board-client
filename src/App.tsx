@@ -6,15 +6,20 @@ const board = new Board();
 function App() {
     const [newMatch, setNewMatch] = useState<{ [key: string]: string }>({});
     const [liveScores, setLiveScores] = useState<string[]>([]);
+    const [error, setError] = useState<string | undefined>(undefined);
 
     const refreshLiveScores = () => setLiveScores(board.getLiveSummary());
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        if (error) setError(undefined);
         const match = [newMatch['home'], newMatch['away']];
-        board.addMatch(match).then(() => {
-            refreshLiveScores();
-        });
+        board
+            .addMatch(match)
+            .then(() => {
+                refreshLiveScores();
+            })
+            .catch(error => setError(error.message));
     };
 
     return (
@@ -38,6 +43,11 @@ function App() {
                 />
                 <input type='submit' onClick={handleSubmit} value='Submit' />
             </form>
+            {error && (
+                <p role='alert' id='error-message' style={{ color: 'red' }}>
+                    {error}
+                </p>
+            )}
             {liveScores.map((match, ix) => (
                 <p key={ix}>{match}</p>
             ))}
