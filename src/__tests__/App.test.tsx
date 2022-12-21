@@ -29,17 +29,4 @@ describe('App Cases', () => {
         expect(await screen.findByText(/team 01 0/)).toBeInTheDocument();
         expect(await screen.findByText(/team 02 0/)).toBeInTheDocument();
     });
-
-    const invalidMatches = [['Team 01'], ['Team 01', 1], [0, 1], [], ['Team 01', 'Team 01']];
-    test.each(invalidMatches)(
-        'Catch and display returned error for data: $teams',
-        async (...teams: any[]) => {
-            render(<App />);
-
-            setInputs(teams);
-            fireEvent.click(screen.getByText(/submit/i));
-
-            expect(await screen.findByRole('alert')).toBeInTheDocument();
-        },
-    );
 });

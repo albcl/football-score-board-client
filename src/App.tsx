@@ -1,26 +1,10 @@
-import { Board } from 'football-score-board';
-import React, { useState } from 'react';
 import './App.css';
+import { useContext } from 'react';
+import { FormContext } from './context';
+import WithBoard from './HOC/WithBoard';
 
-const board = new Board();
 function App() {
-    const [newMatch, setNewMatch] = useState<{ [key: string]: string }>({});
-    const [liveScores, setLiveScores] = useState<string[]>([]);
-    const [error, setError] = useState<string | undefined>(undefined);
-
-    const refreshLiveScores = () => setLiveScores(board.getLiveSummary());
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (error) setError(undefined);
-        const match = [newMatch['home'], newMatch['away']];
-        board
-            .addMatch(match)
-            .then(() => {
-                refreshLiveScores();
-            })
-            .catch(error => setError(error.message));
-    };
+    const { newMatch, error, liveScores, handleFormChange, handleSubmit } = useContext(FormContext);
 
     return (
         <div className='App'>
@@ -32,14 +16,16 @@ function App() {
                     id='home'
                     name='home'
                     type='text'
-                    onChange={e => setNewMatch({ ...newMatch, home: e.target.value })}
+                    value={newMatch['home']}
+                    onChange={e => handleFormChange(e, 'home')}
                 />
                 <label htmlFor='away'>Away Team</label>
                 <input
                     id='away'
                     name='away'
                     type='text'
-                    onChange={e => setNewMatch({ ...newMatch, away: e.target.value })}
+                    value={newMatch['away']}
+                    onChange={e => handleFormChange(e, 'away')}
                 />
                 <input type='submit' onClick={handleSubmit} value='Submit' />
             </form>
@@ -54,4 +40,4 @@ function App() {
         </div>
     );
 }
-export default App;
+export default WithBoard(App);
