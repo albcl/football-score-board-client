@@ -3231,9 +3231,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001400, caniuse-lite@^1.0.30001426:
-  version "1.0.30001439"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001439.tgz#ab7371faeb4adff4b74dad1718a6fd122e45d9cb"
-  integrity sha512-1MgUzEkoMO6gKfXflStpYgZDlFM7M/ck/bgfVCACO5vnAf0fXoNVHdWtqGU+MYca+4bL9Z5bpOVmR33cWW9G2A==
+  version "1.0.30001441"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001441.tgz#987437b266260b640a23cd18fbddb509d7f69f3e"
+  integrity sha512-OyxRR4Vof59I3yGWXws6i908EtGbMzVUi3ganaZQHmydk1iwDhRnvaPG2WaR0KcqrDFKrxVZHULT396LEPhXfg==
 
 case-sensitive-paths-webpack-plugin@^2.4.0:
   version "2.4.0"
@@ -4731,10 +4731,10 @@ follow-redirects@^1.0.0:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
 
-football-score-board@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/football-score-board/-/football-score-board-1.0.1.tgz#d0b0d9c75d42ea35f7ea0ae7ba45f4debb32afcf"
-  integrity sha512-nPQ/iAJHue9aeV6trrUaVXSvA+6CyebyWL4p4n9+vn4JtOs1rWPsgVkv+fagq4SdD2I6I2NOsNHJXs074yqDQg==
+football-score-board@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/football-score-board/-/football-score-board-1.0.4.tgz#8aa59e035374539b21c6213edf66b721c2929464"
+  integrity sha512-5+kXfL/uNtjsyC0cTdwp+PDQBiHiEklbJkJ/LJ/cl/HGMsVVkuXfqJxrfApjrlBLUjCweITTcqVQ3oEyI/GZsg==
   dependencies:
     "@types/jest" "^29.2.4"
     jest "^29.3.1"

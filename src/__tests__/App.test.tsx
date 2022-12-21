@@ -2,8 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import App from '../App';
 
 const setInputs = (teams: any[]) => {
-    const homeInput = screen.getByLabelText('Home Team');
-    const awayInput = screen.getByLabelText('Away Team');
+    const homeInput = screen.getByLabelText(/home team/i);
+    const awayInput = screen.getByLabelText(/away team/i);
 
     fireEvent.change(homeInput, { target: { value: teams[0] } });
     fireEvent.change(awayInput, { target: { value: teams[1] } });
