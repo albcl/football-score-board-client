@@ -1,15 +1,7 @@
-import React, { useState, createContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 
 import { Board } from 'football-score-board';
-
-export const FormContext = createContext({
-    error: '',
-    liveScores: [''],
-    newMatch: { home: '', away: '' },
-    handleFormChange: (e: React.ChangeEvent<HTMLInputElement>, key: string) => {},
-    handleSubmit: (e: React.FormEvent) => {},
-});
+import FormContext from './formContext';
 
 type FormProviderTypes = {
     board: Board;
@@ -51,9 +43,5 @@ function FormProvider({ board, children }: FormProviderTypes) {
 
     return <FormContext.Provider value={provider}>{children}</FormContext.Provider>;
 }
-
-FormProvider.propTypes = {
-    children: PropTypes.node,
-};
 
 export default FormProvider;
