@@ -15,6 +15,12 @@ const UnsortedMatches = () => {
                         <input
                             style={{ margin: '0 .25rem' }}
                             type='button'
+                            value='+'
+                            onClick={() => handleScore(match)}
+                        />
+                        <input
+                            style={{ margin: '0 .25rem' }}
+                            type='button'
                             value='finish game'
                             onClick={() => handleDelete(key)}
                         />

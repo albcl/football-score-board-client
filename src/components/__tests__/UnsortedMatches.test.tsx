@@ -89,4 +89,28 @@ describe('UnsortedMatches Cases', () => {
         expect(screen.queryByText(/Team 01/i)).toBeNull();
         expect(screen.queryByText(/0 - 0/i)).toBeNull();
     });
+
+    test('Will use both score handle buttons', async () => {
+        const key = 'teamKey';
+        const teams = ['Team 01', 'Team 02'];
+        const score = [0, 0];
+
+        const mockValue = {
+            ...defaultContextValues,
+            playingMatches: {
+                [key]: { teams: teams, score: score },
+            },
+            handleScore: jest.fn(),
+        };
+
+        render(
+            <FormContext.Provider value={mockValue}>
+                <UnsortedMatches />
+            </FormContext.Provider>,
+        );
+
+        const scoreButtons = screen.getByText('+');
+        fireEvent.click(scoreButtons);
+        expect(mockValue.handleScore).toHaveBeenCalledTimes(1);
+    });
 });

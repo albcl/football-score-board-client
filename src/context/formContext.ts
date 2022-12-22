@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { PlayingMatchesTypes } from './types';
+import { MatchTypes, PlayingMatchesTypes } from './types';
 
 export const defaultContextValues = {
     error: '',
@@ -9,6 +9,7 @@ export const defaultContextValues = {
     handleFormChange: (e: React.ChangeEvent<HTMLInputElement>, key: string) => {},
     handleSubmit: (e: React.FormEvent) => {},
     handleDelete: (key: string) => {},
+    handleScore: (match: [string, MatchTypes]) => {},
 };
 
 const FormContext = createContext(defaultContextValues);

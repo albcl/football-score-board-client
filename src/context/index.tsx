@@ -46,6 +46,9 @@ function FormProvider({ board, children }: FormProviderTypes) {
                 })
                 .catch((error: { [key: string]: string }) => setError(error.message));
         },
+        handleScore: (match: [string, MatchTypes]) => {
+            const [key, value] = match;
+        },
     };
 
     return <FormContext.Provider value={provider}>{children}</FormContext.Provider>;
