@@ -9,7 +9,7 @@ export const defaultContextValues = {
     handleFormChange: (e: React.ChangeEvent<HTMLInputElement>, key: string) => {},
     handleSubmit: (e: React.FormEvent) => {},
     handleDelete: (key: string) => {},
-    handleScore: (match: [string, MatchTypes]) => {},
+    handleScore: (match: [string, MatchTypes], team: number) => {},
 };
 
 const FormContext = createContext(defaultContextValues);

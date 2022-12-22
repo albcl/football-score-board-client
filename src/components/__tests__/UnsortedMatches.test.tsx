@@ -109,8 +109,14 @@ describe('UnsortedMatches Cases', () => {
             </FormContext.Provider>,
         );
 
-        const scoreButtons = screen.getByText('+');
-        fireEvent.click(scoreButtons);
+        const scoreButtons = screen.getAllByText('+');
+
+        fireEvent.click(scoreButtons[0]);
         expect(mockValue.handleScore).toHaveBeenCalledTimes(1);
+        expect(mockValue.handleScore).toHaveBeenCalledWith(expect.anything(), 0);
+
+        fireEvent.click(scoreButtons[1]);
+        expect(mockValue.handleScore).toHaveBeenCalledTimes(2);
+        expect(mockValue.handleScore).toHaveBeenCalledWith(expect.anything(), 1);
     });
 });

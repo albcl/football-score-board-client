@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import FormContext from '../context/formContext';
 
 const UnsortedMatches = () => {
-    const { playingMatches, handleDelete } = useContext(FormContext);
+    const { playingMatches, handleDelete, handleScore } = useContext(FormContext);
 
     return (
         <>
@@ -16,7 +16,13 @@ const UnsortedMatches = () => {
                             style={{ margin: '0 .25rem' }}
                             type='button'
                             value='+'
-                            onClick={() => handleScore(match)}
+                            onClick={() => handleScore(match, 0)}
+                        />
+                        <input
+                            style={{ margin: '0 .25rem' }}
+                            type='button'
+                            value='+'
+                            onClick={() => handleScore(match, 1)}
                         />
                         <input
                             style={{ margin: '0 .25rem' }}

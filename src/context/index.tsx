@@ -46,7 +46,7 @@ function FormProvider({ board, children }: FormProviderTypes) {
                 })
                 .catch((error: { [key: string]: string }) => setError(error.message));
         },
-        handleScore: (match: [string, MatchTypes]) => {
+        handleScore: (match: [string, MatchTypes], team: number) => {
             const [key, value] = match;
         },
     };
