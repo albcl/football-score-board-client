@@ -8,6 +8,7 @@ export const defaultContextValues = {
     playingMatches: {} as PlayingMatchesTypes,
     handleFormChange: (e: React.ChangeEvent<HTMLInputElement>, key: string) => {},
     handleSubmit: (e: React.FormEvent) => {},
+    handleDelete: (key: string) => {},
 };
 
 const FormContext = createContext(defaultContextValues);

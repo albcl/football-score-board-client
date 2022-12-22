@@ -32,6 +32,20 @@ function FormProvider({ board, children }: FormProviderTypes) {
                 })
                 .catch((error: { [key: string]: string }) => setError(error.message));
         },
+        handleDelete: (matchKey: string) => {
+            console.log(matchKey);
+            const match = playingMatches[matchKey].teams;
+
+            board
+                .finishMatch(match)
+                .then(() => {
+                    refreshLiveScores();
+
+                    const { [matchKey]: remove, ...newMatches } = playingMatches;
+                    setPlayingMatches(newMatches);
+                })
+                .catch((error: { [key: string]: string }) => setError(error.message));
+        },
     };
 
     return <FormContext.Provider value={provider}>{children}</FormContext.Provider>;

@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import FormContext, { defaultContextValues } from '../../context/formContext';
+import { PlayingMatchesTypes } from '../../context/types';
 import UnsortedMatches from '../UnsortedMatches';
 
 describe('UnsortedMatches Cases', () => {
@@ -27,6 +28,31 @@ describe('UnsortedMatches Cases', () => {
         expect(screen.getByText(/0 - 0/i)).toBeInTheDocument();
     });
 
+    test('Will use delete handle', async () => {
+        const key = 'teamKey';
+        const teams = ['Team 01', 'Team 02'];
+        const score = [0, 0];
+
+        const mockValue = {
+            ...defaultContextValues,
+            playingMatches: {
+                [key]: { teams: teams, score: score },
+            },
+            handleDelete: jest.fn(),
+        };
+
+        render(
+            <FormContext.Provider value={mockValue}>
+                <UnsortedMatches />
+            </FormContext.Provider>,
+        );
+
+        fireEvent.click(screen.getByText(/finish/i));
+
+        expect(mockValue.handleDelete).toHaveBeenCalledTimes(1);
+        expect(mockValue.handleDelete).toHaveBeenCalledWith(key);
+    });
+
     test('Will delete (finish) a match', async () => {
         const key = 'teamKey';
         const teams = ['Team 01', 'Team 02'];
@@ -37,22 +63,30 @@ describe('UnsortedMatches Cases', () => {
             playingMatches: {
                 [key]: { teams: teams, score: score },
             },
+            // handleDelete: jest.fn(),
+            handleDelete: (key: string) => {
+                mockValue.playingMatches = {} as PlayingMatchesTypes;
+            },
         };
 
-        render(
+        const TestingComponent = () => (
             <FormContext.Provider value={mockValue}>
                 <UnsortedMatches />
-            </FormContext.Provider>,
+            </FormContext.Provider>
         );
+
+        const { rerender } = render(<TestingComponent />);
 
         expect(screen.getByText(/Team 01 - Team 02/i)).toBeInTheDocument();
         expect(screen.getByText(/0 - 0/i)).toBeInTheDocument();
         const finishButton = screen.getByText(/finish/i);
         expect(finishButton).toBeInTheDocument();
 
-        fireEvent.click(screen.getByText(/finish/i));
+        fireEvent.click(finishButton);
 
-        expect(await screen.findByText(/Team 01 - Team 02/i)).not.toBeInTheDocument();
-        expect(await screen.findByText(JSON.stringify(score))).toBeInTheDocument();
+        rerender(<TestingComponent />);
+
+        expect(screen.queryByText(/Team 01/i)).toBeNull();
+        expect(screen.queryByText(/0 - 0/i)).toBeNull();
     });
 });
