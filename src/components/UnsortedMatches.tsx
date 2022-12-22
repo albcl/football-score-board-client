@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import FormContext from '../context/formContext';
+import Button from './styledComponents/Button';
 
 const UnsortedMatches = () => {
     const { playingMatches, handleDelete, handleScore } = useContext(FormContext);
@@ -12,24 +13,9 @@ const UnsortedMatches = () => {
                 return (
                     <p key={key} style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         {value.teams[0]} - {value.teams[1]} / {value.score[0]} - {value.score[1]}
-                        <input
-                            style={{ margin: '0 .25rem' }}
-                            type='button'
-                            value='+'
-                            onClick={() => handleScore(match, 0)}
-                        />
-                        <input
-                            style={{ margin: '0 .25rem' }}
-                            type='button'
-                            value='+'
-                            onClick={() => handleScore(match, 1)}
-                        />
-                        <input
-                            style={{ margin: '0 .25rem' }}
-                            type='button'
-                            value='finish game'
-                            onClick={() => handleDelete(key)}
-                        />
+                        <Button value='+' onClick={() => handleScore(match, 0)} />
+                        <Button value='+' onClick={() => handleScore(match, 1)} />
+                        <Button value='finish game' onClick={() => handleDelete(key)} />
                     </p>
                 );
             })}
