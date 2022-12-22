@@ -1,4 +1,6 @@
 import { render, screen } from '@testing-library/react';
+import UnsortedMatches from '../UnsortedMatches';
+
 describe('UnsortedMatches Cases', () => {
     test('Render just fine', () => {
         render(<UnsortedMatches />);
