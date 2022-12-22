@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import FormContext from './formContext';
-import { FormProviderTypes, NewMatchTypes, PlayingMatchesTypes } from './types';
+import { FormProviderTypes, MatchTypes, NewMatchTypes, PlayingMatchesTypes } from './types';
 
 function FormProvider({ board, children }: FormProviderTypes) {
     const [newMatch, setNewMatch] = useState<NewMatchTypes>({ home: '', away: '' });
@@ -48,6 +48,16 @@ function FormProvider({ board, children }: FormProviderTypes) {
         },
         handleScore: (match: [string, MatchTypes], team: number) => {
             const [key, value] = match;
+
+            const { teams, score } = value;
+            const newScore = team < 1 ? [score[0] + 1, score[1]] : [score[0], score[1] + 1];
+            board
+                .updateScore(teams, newScore)
+                .then(() => {
+                    refreshLiveScores();
+                    addPlayingMatch(key, teams, newScore);
+                })
+                .catch((error: { [key: string]: string }) => setError(error.message));
         },
     };
 
