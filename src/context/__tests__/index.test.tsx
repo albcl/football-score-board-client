@@ -1,7 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { Board } from 'football-score-board';
 import { useContext } from 'react';
-import FormProvider, { FormContext } from '..';
+import FormProvider from '..';
+import FormContext from '../formContext';
 
 const setInputs = (teams: any[]) => {
     const homeInput = screen.getByLabelText('Home Team');
