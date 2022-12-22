@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { useContext } from 'react';
-import { FormContext } from '../context';
+import FormContext, { defaultContextValues } from '../../context/formContext';
 import UnsortedMatches from '../UnsortedMatches';
 
 describe('UnsortedMatches Cases', () => {
@@ -18,28 +17,13 @@ describe('UnsortedMatches Cases', () => {
             },
         };
 
-        const TestingComponent = () => {
-            const { playingMatches } = useContext(FormContext);
-            return (
-                <ul>
-                    {Object.entries(playingMatches).map(([key, value]) => {
-                        return (
-                            <p key={key}>
-                                {key} - {value.teams.join(' ')} - {value.score.join(' ')}
-                            </p>
-                        );
-                    })}
-                </ul>
-            );
-        };
-
         render(
             <FormContext.Provider value={mockValue}>
-                <TestingComponent />
+                <UnsortedMatches />
             </FormContext.Provider>,
         );
 
-        expect(screen.getByText(/team 01 team 02/i)).toBeInTheDocument();
-        expect(screen.getByText(/0 0/i)).toBeInTheDocument();
+        expect(screen.getByText(/team 01 - team 02/i)).toBeInTheDocument();
+        expect(screen.getByText(/0 - 0/i)).toBeInTheDocument();
     });
 });

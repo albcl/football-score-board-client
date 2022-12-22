@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { PlayingMatchesTypes } from '../components/types';
+import { PlayingMatchesTypes } from './types';
 
 export const defaultContextValues = {
     error: '',
