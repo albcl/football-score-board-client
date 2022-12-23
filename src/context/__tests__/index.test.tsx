@@ -3,7 +3,7 @@ import { Board } from 'football-score-board';
 import { useContext } from 'react';
 import FormProvider from '..';
 import AddMatchForm from '../../components/AddMatchForm';
-import UnsortedMatches from '../../components/UnsortedMatches';
+import ActiveMatchesList from '../../components/ActiveMatchesList';
 import WithBoard from '../../HOC/WithBoard';
 import FormContext from '../formContext';
 
@@ -41,7 +41,7 @@ describe('Context Cases', () => {
 
     const invalidMatches = [['Team 01'], ['Team 01', 1], [0, 1], [], ['Team 01', 'Team 01']];
     test.each(invalidMatches)(
-        'Catch and display returned error for data: $teams',
+        'Catch and display returned error trying to add invalid match: $teams',
         async (...teams: any[]) => {
             const TestingComponent = () => {
                 const { newMatch, error, handleFormChange, handleSubmit } = useContext(FormContext);
@@ -90,7 +90,7 @@ describe('Context Cases', () => {
         const BaseComponent = () => (
             <>
                 <AddMatchForm />
-                <UnsortedMatches />
+                <ActiveMatchesList />
             </>
         );
 
@@ -133,7 +133,7 @@ describe('Context Cases', () => {
         const BaseComponent = () => (
             <>
                 <AddMatchForm />
-                <UnsortedMatches />
+                <ActiveMatchesList />
             </>
         );
 
