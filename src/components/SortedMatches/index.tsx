@@ -1,3 +1,7 @@
+/**
+ * List of matches (games) sorted by total scores
+ * @param {string[]} data Array of games and scores already sorted
+ */
 const SortedMatches = ({ data }: { data: string[] }) => (
     <>
         <h2>Live Sorted Matches</h2>

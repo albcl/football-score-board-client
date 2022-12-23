@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import WithBoard from '../../HOC/WithBoard';
-import AddMatchForm from '../AddMatchForm';
+import WithBoard from '../../../HOC/WithBoard';
+import AddMatchForm from '..';
 
 describe('AddMatchForm Cases', () => {
     test('Render just fine', () => {
@@ -15,13 +15,13 @@ describe('AddMatchForm Cases', () => {
     test("Fails: Can't access Context", () => {
         render(<AddMatchForm />);
 
-        const test = screen.getByText(/submit/i);
-        expect(test).toBeInTheDocument();
+        const submitButton = screen.getByText(/submit/i);
+        expect(submitButton).toBeInTheDocument();
 
         // mock console
         const consoleError = jest.spyOn(global.console, 'error').mockImplementation(() => {});
 
-        fireEvent.click(test);
+        fireEvent.click(submitButton);
         expect(consoleError).toHaveBeenCalledTimes(1);
 
         // restore console

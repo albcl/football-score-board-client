@@ -1,11 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import FormContext, { defaultContextValues } from '../../context/formContext';
-import { PlayingMatchesTypes } from '../../context/types';
-import UnsortedMatches from '../UnsortedMatches';
+import FormContext, { defaultContextValues } from '../../../context/formContext';
+import { PlayingMatchesTypes } from '../../../context/types';
+import ActiveMatchesList from '..';
 
 describe('UnsortedMatches Cases', () => {
     test('Render just fine', () => {
-        render(<UnsortedMatches />);
+        render(<ActiveMatchesList />);
 
         expect(screen.getByText(/live matches/i)).toBeInTheDocument();
     });
@@ -20,7 +20,7 @@ describe('UnsortedMatches Cases', () => {
 
         render(
             <FormContext.Provider value={mockValue}>
-                <UnsortedMatches />
+                <ActiveMatchesList />
             </FormContext.Provider>,
         );
 
@@ -43,7 +43,7 @@ describe('UnsortedMatches Cases', () => {
 
         render(
             <FormContext.Provider value={mockValue}>
-                <UnsortedMatches />
+                <ActiveMatchesList />
             </FormContext.Provider>,
         );
 
@@ -71,7 +71,7 @@ describe('UnsortedMatches Cases', () => {
 
         const TestingComponent = () => (
             <FormContext.Provider value={mockValue}>
-                <UnsortedMatches />
+                <ActiveMatchesList />
             </FormContext.Provider>
         );
 
@@ -105,7 +105,7 @@ describe('UnsortedMatches Cases', () => {
 
         render(
             <FormContext.Provider value={mockValue}>
-                <UnsortedMatches />
+                <ActiveMatchesList />
             </FormContext.Provider>,
         );
 
