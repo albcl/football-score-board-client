@@ -12,8 +12,9 @@ const UnsortedMatches = () => {
                 const [key, value] = match;
                 return (
                     <p key={key} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        {value.teams[0]} - {value.teams[1]} / {value.score[0]} - {value.score[1]}
+                        {value.teams[0]} - {value.teams[1]}
                         <Button value='+' onClick={() => handleScore(match, 0)} />
+                        {value.score[0]} - {value.score[1]}
                         <Button value='+' onClick={() => handleScore(match, 1)} />
                         <Button value='finish game' onClick={() => handleDelete(key)} />
                     </p>

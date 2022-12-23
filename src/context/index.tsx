@@ -9,6 +9,7 @@ function FormProvider({ board, children }: FormProviderTypes) {
     const [error, setError] = useState<string>('');
 
     const refreshLiveScores = () => setLiveScores(board.getLiveSummary());
+    const clearNewMatch = () => setNewMatch({ home: '', away: '' });
     const addPlayingMatch = (key: string, teams: string[], score = [0, 0]) =>
         setPlayingMatches({ ...playingMatches, [key]: { teams: teams, score: score } });
 
@@ -29,11 +30,11 @@ function FormProvider({ board, children }: FormProviderTypes) {
                 .then(() => {
                     refreshLiveScores();
                     addPlayingMatch(JSON.stringify(match), match);
+                    clearNewMatch();
                 })
                 .catch((error: { [key: string]: string }) => setError(error.message));
         },
         handleDelete: (matchKey: string) => {
-            console.log(matchKey);
             const match = playingMatches[matchKey].teams;
 
             board
