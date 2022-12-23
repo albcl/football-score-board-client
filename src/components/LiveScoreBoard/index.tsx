@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import SortedMatches from '../SortedMatches';
 
-import UnsortedMatches from '../UnsortedMatches';
+import ActiveMatchesList from '../UnsortedMatches';
 import AddMatchForm from '../AddMatchForm';
 import FormContext from '../../context/formContext';
 import WithBoard from '../../HOC/WithBoard';
@@ -33,7 +33,7 @@ const LiveScoreBoard = () => {
 
                 <div style={{ display: 'flex', justifyContent: 'space-evenly', width: '100%' }}>
                     <div style={{ margin: '0 2rem' }}>
-                        <UnsortedMatches />
+                        <ActiveMatchesList />
                     </div>
                     <div style={{ margin: '0 2rem' }}>
                         <SortedMatches data={liveScores} />
