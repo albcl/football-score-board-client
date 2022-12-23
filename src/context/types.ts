@@ -1,3 +1,5 @@
+import { Board } from 'football-score-board';
+
 export type FormProviderTypes = {
     board: Board;
     children: React.ReactNode;
