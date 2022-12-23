@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import SortedMatches from '../SortedMatches';
+import SortedMatches from '..';
 
 describe('SortedMatches Cases', () => {
     test('Render just fine', () => {
