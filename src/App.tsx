@@ -1,6 +1,6 @@
 import './App.css';
 import { useContext } from 'react';
-import { FormContext } from './context';
+import FormContext from './context/formContext';
 import WithBoard from './HOC/WithBoard';
 import SortedMatches from './components/SortedMatches';
 import AddMatchForm from './components/AddMatchForm';

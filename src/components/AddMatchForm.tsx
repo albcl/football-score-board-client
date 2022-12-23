@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { FormContext } from '../context';
+import FormContext from '../context/formContext';
 
 /**
  * Form for adding (starting) new matches
