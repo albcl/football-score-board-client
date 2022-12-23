@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import SortedMatches from '../SortedMatches';
 
-import ActiveMatchesList from '../UnsortedMatches';
+import ActiveMatchesList from '../ActiveMatchesList';
 import AddMatchForm from '../AddMatchForm';
 import FormContext from '../../context/formContext';
 import WithBoard from '../../HOC/WithBoard';

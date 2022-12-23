@@ -2,8 +2,11 @@ import React from 'react';
 
 interface InputButtonProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const Button = (props: InputButtonProps) => (
-    <input style={{ margin: '0 .25rem' }} type='button' {...props} />
-);
+const styling = { margin: '0 .25rem' };
+
+/**
+ * Shared Button component with minimum styles applied
+ */
+const Button = (props: InputButtonProps) => <input style={styling} type='button' {...props} />;
 
 export default Button;

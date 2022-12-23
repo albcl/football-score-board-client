@@ -3,7 +3,7 @@ import FormContext, { defaultContextValues } from '../../../context/formContext'
 import { PlayingMatchesTypes } from '../../../context/types';
 import ActiveMatchesList from '..';
 
-describe('UnsortedMatches Cases', () => {
+describe('ActiveMatchesList Cases', () => {
     test('Render just fine', () => {
         render(<ActiveMatchesList />);
 
