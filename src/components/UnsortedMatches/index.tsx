@@ -1,7 +1,11 @@
 import { useContext } from 'react';
-import FormContext from '../context/formContext';
-import Button from './styledComponents/Button';
+import FormContext from '../../context/formContext';
+import Button from '../styledComponents/Button';
 
+/**
+ * List of matches (games) displayed by their added (started) time
+ * It makes use of *{playingMatches, handleDelete, handleScore}* from *FormContext*
+ */
 const UnsortedMatches = () => {
     const { playingMatches, handleDelete, handleScore } = useContext(FormContext);
 

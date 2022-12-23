@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import FormContext, { defaultContextValues } from '../../context/formContext';
-import { PlayingMatchesTypes } from '../../context/types';
-import UnsortedMatches from '../UnsortedMatches';
+import FormContext, { defaultContextValues } from '../../../context/formContext';
+import { PlayingMatchesTypes } from '../../../context/types';
+import UnsortedMatches from '..';
 
 describe('UnsortedMatches Cases', () => {
     test('Render just fine', () => {
